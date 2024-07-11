@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styles.css" />
+    <title>Blog App</title>
+  </head>
+  <body>
+    <%- include('partials/header') %>
+    <div class="container">
+      <h1>Blog Posts</h1>
+      <a href="/posts/new">Create New Post</a>
+
+      <!-- List -->
+      <ul>
+        <% posts.forEach(post => {%>
+        <li>
+          <a href="/posts/<%= post.id %>"> <%= post.title %> </a>
+          <a href="/posts/<%= post.id %>/edit"> Edit </a>
+          <!-- Form: Request Body -->
+          <form
+            action="/posts/<%= post.id %>?_method=DELETE"
+            method="POST"
+            style="display: inline"
+          >
+            <button type="submit">Delete</button>
+          </form>
+        </li>
+        <%}) %>
+      </ul>
+    </div>
+  </body>
+</html>
