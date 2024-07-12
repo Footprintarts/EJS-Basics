@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/style.css" />
+    <title>Chat Room</title>
+  </head>
+  <body>
+    <h1>EJS-Chat Room😁</h1>
+    <div id="messages"></div>
+    <!-- Form -->
+    <form action="" id="form">
+      <input id="message" autocomplete="off" placeholder="Message" />
+      <button>Send</button>
+    </form>
+    <!-- Logout -->
+    <a href="/logout">Logout</a>
+
+    <!-- Real Time Chat Scripts -->
+    <script defer src="/socket.io/socket.io.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", (event) => {
+        const socket = io();
+
+        const form = document.getElementById("form");
+        const input = document.getElementById("message");
+        const messages = document.getElementById("messages");
+        const currentUsername = "<%= username %>"; // Pass this from your server
+
+        form.addEventListener("submit", (e) => {
+          e.preventDefault();
+          if (input.value) {
+            socket.emit("chat message", {
+              message: input.value,
+              username: currentUsername,
+            });
+            input.value = "";
+          }
+        });
+
+        socket.on("chat message", (data) => {
+          const item = document.createElement("li");
+          item.className = data.username === currentUsername ? "self" : "other";
+          item.textContent = `${data.username}: ${data.message}`;
+          messages.appendChild(item);
+          window.scrollTo(0, document.body.scrollHeight);
+        });
+      });
+    </script>
+  </body>
+</html>

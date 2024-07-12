@@ -1,0 +1,80 @@
+body {
+  font-family: Poppins, sans-serif;
+}
+
+h1 {
+  text-align: center;
+}
+
+form {
+  text-align: center;
+  margin-top: 20px;
+}
+
+a {
+  display: block;
+  text-align: center;
+  margin-top: 20px;
+  text-decoration: none;
+  color: #007bff;
+  background: #ccc;
+  padding: 10px;
+}
+
+a:hover {
+  background: #aaa;
+  transition: all 0.3s;
+}
+
+button {
+  border: none;
+  color: whitesmoke;
+  background: #007bff;
+  padding: 10px 20px;
+}
+
+input {
+  outline: none;
+  padding: 10px;
+}
+
+#messages {
+  border: 1px solid #ccc;
+  padding: 10px;
+  height: 300px;
+  overflow-y: scroll;
+  margin-bottom: 10px;
+  background: #eee;
+}
+
+li {
+  padding: 10px 20px;
+  border-radius: 20px;
+  color: white;
+  display: inline-block; /* Inline-block to respect float */
+  margin: 10px 0; /* Reduced margin to fit more messages */
+  max-width: 70%; /* Prevent messages from being too wide */
+  clear: both; /* Prevent overlap */
+}
+
+li.self {
+  background: #007bff; /* Current user's message */
+  float: right; /* Align to right */
+  text-align: right; /* Align text to right */
+  border-radius: 20px 20px 0 20px;
+}
+
+li.other {
+  background: #28a745; /* Other user's message */
+  float: left; /* Align to left */
+  text-align: left; /* Align text to left */
+  border-radius: 20px 20px 20px 0;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+div {
+  padding: 5px;
+}
